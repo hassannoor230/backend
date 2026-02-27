@@ -11,15 +11,25 @@ const reportRoutes = require("./routes/reportRoutes");
 
 const app = express();
 
-// ✅ CORS Updated for Vercel Frontend
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://nova-pos-frontend.vercel.app",
+  "https://nova-pos-frontend-as8g.vercel.app"
+];
+
 app.use(
   cors({
-    origin: ["https://nova-pos-frontend.vercel.app"],
-
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // Postman etc
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,7 +45,7 @@ app.use("/api/reports", reportRoutes);
 // Health check
 app.get("/", (req, res) => {
   res.json({
-    message: "✅ POS System API is Running",
+    message: " POS System API is Running",
     version: "1.0.0",
   });
 });
