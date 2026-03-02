@@ -1,5 +1,34 @@
 const mongoose = require("mongoose");
 
+const variantSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  stock: {
+    type: Number,
+    default: 0,
+    min: 0,
+  },
+  sku: {
+    type: String,
+    trim: true,
+    default: "",
+  },
+  // ── FIXED: unit field add kiya ──
+  unit: {
+    type: String,
+    trim: true,
+    default: "",
+  },
+});
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -60,6 +89,10 @@ const productSchema = new mongoose.Schema(
     isActive: {
       type: Boolean,
       default: true,
+    },
+    variants: {
+      type: [variantSchema],
+      default: [],
     },
   },
   { timestamps: true }
