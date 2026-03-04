@@ -183,7 +183,7 @@ const getProducts = (cats) => {
       ],
     },
 
-    // ── SOFT DRINKS ───────────────────────────
+    // ── SOFT DRINKS ─────
     {
       name: "Coca Cola",
       sku: "SDR-001",
