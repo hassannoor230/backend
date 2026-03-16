@@ -20,8 +20,8 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:5175",
-  "https://nova-pos-frontend.vercel.app",
-  "https://nova-pos-frontend-as8g.vercel.app"
+  "https://frontend-five-kappa-22.vercel.app/",
+  
 ];
 
 app.use(
